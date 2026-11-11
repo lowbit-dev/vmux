@@ -13,13 +13,13 @@ type Registrar struct {
 }
 
 // Handle registers an http.Handler onto this version's router.
-func (r Registrar) Handle(pattern string, handler http.Handler) {
-	r.router.Handle(pattern, handler)
+func (r Registrar) Handle(pattern string, handler http.Handler, middleware ...muxx.Middleware) {
+	r.router.Handle(pattern, handler, middleware...)
 }
 
 // HandleFunc registers an http.HandlerFunc onto this version's router.
-func (r Registrar) HandleFunc(pattern string, handler http.HandlerFunc) {
-	r.router.HandleFunc(pattern, handler)
+func (r Registrar) HandleFunc(pattern string, handler http.HandlerFunc, middleware ...muxx.Middleware) {
+	r.router.HandleFunc(pattern, handler, middleware...)
 }
 
 // Group creates a sub-registrar with an appended path or host prefix.
